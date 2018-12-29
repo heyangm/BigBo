@@ -4,7 +4,7 @@
     适用于部分浏览器(不推荐)
     微信中自动播放：
 ```js
-let audio = document.getElementsByTagName('audio');
+var audio = document.getElementsByTagName('audio');
 document.addEventListener("WeixinJSBridgeReady", ()=>{
     audio[0].play();
 }, false);
@@ -27,14 +27,20 @@ Android
 
 我们还发现，有些低版本Android中，无法通过video.play()来播放视频，必须有真实的用户点击视频元素才能播放；这种情况，有一个技巧就是在tap的时候初始化并放大视频覆盖在播放视图中，让300毫秒后的真实点击行为穿透点击在视频元素上来实现播放。
 
+```js 
+var video = document.getElementsByTagName('video');
+video.addEventListener("click", ()=>{
+    video[0].play();
+}, false);
+```
 
 ##  X5 
 X5是腾讯基于Webkit开发的浏览器内核，应用于Android端的微信、QQ、QQ浏览器等应用。它提供了一种名叫「同层播放器」的特殊video元素以解决遮挡问题。
 
 在普通video元素上添加属性 x5-video-player-type ，启用Ｈ5同层播放器
-
+## 属性 
 ### x5-video-player-fullscreen 全屏方式
-如果不申明此属性，页面得到视口区域为原始视口大小(视频未播放前)
+如果不申明此属性，页面得到视口区域为原始视口大小(视频未播放前)，不包含导航栏的高度，导致上下黑边
 通过监听窗口大小实现全屏
 ``` js 
 window.onresize = function(){
@@ -45,6 +51,10 @@ window.onresize = function(){
 ### x5-video-orientation 控制横竖屏
 功能：声明播放器支持的方向
 可选值： landscape 横屏, portraint竖屏 ,landscape|portrait 跟随手机自动旋转(此属性只在声明了x5-video-player-type=”h5”情况下生效)
+
+### playsinline="true"  webkit-playsinline="true"  
+需要嵌入网页的APP比如WeChat中UIwebview 的allowsInlineMediaPlayback = YES webview.allowsInlineMediaPlayback = YES，才能生效
+ios 微信中支持 ，安卓不支持。
 
 ## 事件回调
 ### x5videoenterfullscreen 进入全屏通知
@@ -61,12 +71,12 @@ myVideo.addEventListener("x5videoexitfullscreen", function(){
 })
 ```
 
-### video  内嵌全屏播放
+### video  全屏播放
 
-部分浏览器不适用，如uc浏览器、微博app、蜗牛app ,Andriod大部分机型弹窗全屏播放
 ```html
-        <video id="media" x-webkit-airplay="true" style="object-fit: fill; transform-origin: 0px 0px 0px;" src="https://easyread.nosdn.127.net/web/trunk/1545964254280/videoshort.mp4" poster='https://easyread.nosdn.127.net/web/trunk/1545977524201/01.png' playsinline="true" webkit-playsinline="true" airplay="allow" x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-orientation="portrait" preload="auto"></video>
+    <video id="media" x-webkit-airplay="true" style="object-fit: fill; transform-origin: 0px 0px 0px;" src="https://easyread.nosdn.127.net/web/trunk/1545964254280/videoshort.mp4" poster='https://easyread.nosdn.127.net/web/trunk/1545977524201/01.png' playsinline="true" webkit-playsinline="true" airplay="allow" x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-orientation="portrait" preload="auto"></video>
 ```
+
 
 针对蜗牛app实现内嵌播放，添加以下js:
 (在其他浏览器中添加以下代码可能会导致视频无法播放)
