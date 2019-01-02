@@ -21,13 +21,13 @@
 
 |property| weixin | safari | uc | snail  |
 | :--- | :--- | :--- | :--- |
-|readyState-- --|   0    |   1  |   1  | 0 |
-|networkState --|   0    |   3  |   3  | 0 |
-|--inline-------| true |  true  |false |false|
+|readyState|   0    |   1  |   1  | 0 |
+|networkState |   0    |   3  |   3  | 0 |
+|inline| true |  true  |false |false|
 
 #### Android
 
-| 系统-浏览器 | 带声音 | 不带声音 |
+| property | weixin | safari |
 | :--- | :--- | :--- |
 | IOS 钉钉 | 支持 | 支持 |
 | IOS Safari | 禁止 | 自动播放 |
