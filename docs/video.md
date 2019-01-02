@@ -27,11 +27,11 @@
 
 #### Android
 
-| property | weixin | safari |
-| :--- | :--- | :--- |
-| IOS 钉钉 | 支持 | 支持 |
-| IOS Safari | 禁止 | 自动播放 |
-| IOS 微信 | 禁止 | 禁止 |
+| property | weixin | safari | uc | snail  |
+| :--- | :--- | :--- | :--- | :--- |
+| readyState | 0 | 1 | 1| 0|
+|networkState |  0 | 3  | 3  | 0 |
+| inline |  true |  true  |false |false|
 
 
 >事件
