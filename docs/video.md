@@ -9,7 +9,7 @@
                 2 = HAVE_CURRENT_DATA - 关于当前播放位置的数据是可用的，但没有足够的数据来播放下一帧/毫秒 
                 3 = HAVE_FUTURE_DATA - 当前及至少下一帧的数据是可用的 
                 4 = HAVE_ENOUGH_DATA - 可用数据足以开始播放
---------------------- 
+ 
  networkState : 0 = NETWORK_EMPTY - 音频/视频尚未初始化
                 1 = NETWORK_IDLE - 音频/视频是活动的且已选取资源，但并未使用网络
                 2 = NETWORK_LOADING - 浏览器正在下载数据
