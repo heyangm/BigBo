@@ -27,6 +27,13 @@
 
 #### Android
 
+| 系统-浏览器 | 带声音 | 不带声音 |
+| :--- | :--- | :--- |
+| IOS 钉钉 | 支持 | 支持 |
+| IOS Safari | 禁止 | 自动播放 |
+| IOS 微信 | 禁止 | 禁止 |
+
+
 >事件
 
  兼容性较好 ：ended 、playing、timeupdate、play、paused
