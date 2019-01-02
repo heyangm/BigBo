@@ -17,14 +17,15 @@
 
 （在ios微信中，readyState、networkState在视频开始播放前始终返回0）
 
-ios(未播放时)
+#### ios(未播放时)
 
 |property| weixin | safari | uc | snail  |
 |-----------|---------|--------|---------|
 |readyState-- --|   0    |   1  |   1  | 0 |
 |networkState --|   0    |   3  |   3  | 0 |
 |--inline-------| true |  true  |false |false|
-Android
+
+#### Android
 
 >事件
 
