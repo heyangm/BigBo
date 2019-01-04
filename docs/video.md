@@ -166,8 +166,13 @@ var makeVideoPlayableInline=function(){"use strict";function e(e){var r=void 0;v
 
 ## 总结
 1. 内联播放 添加 playinline属性 在ios、安卓中实现内联播放
+
     <video id="media" controls  src="" playsinline="true" webkit-playsinline="true" preload="auto"></video>
+    
     缺陷： 在安卓中，视频区域的其他元素会被覆盖
+    
 2. 视频区域内需要添加其他元素，如弹幕、按钮等
+
    在安卓中 添加x5-video-player-type="h5" 属性，启用Ｈ5同层播放器
+   
    缺陷： 支持h5同层播放的浏览器中 如微信，类似弹出弹窗进入全屏播放
