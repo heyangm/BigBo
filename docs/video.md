@@ -40,14 +40,21 @@
 > 状态属性  readyState(就绪状态) 、networkState(当前网络状态)
 
  readyState :   0 = HAVE_NOTHING - 没有关于音频/视频是否就绪的信息 
+ 
                 1 = HAVE_METADATA - 关于音频/视频就绪的元数据 
+                
                 2 = HAVE_CURRENT_DATA - 关于当前播放位置的数据是可用的，但没有足够的数据来播放下一帧/毫秒 
+                
                 3 = HAVE_FUTURE_DATA - 当前及至少下一帧的数据是可用的 
+                
                 4 = HAVE_ENOUGH_DATA - 可用数据足以开始播放
 
  networkState : 0 = NETWORK_EMPTY - 音频/视频尚未初始化
+ 
                 1 = NETWORK_IDLE - 音频/视频是活动的且已选取资源，但并未使用网络
+                
                 2 = NETWORK_LOADING - 浏览器正在下载数据
+                
                 3 = NETWORK_NO_SOURCE - 未找到音频/视频来源
 
 （在ios微信中，readyState、networkState在视频开始播放前始终返回0）
@@ -73,13 +80,15 @@
 >事件
 
  兼容性较好 ：play、paused、ended 、playing、timeupdate
+ 
  其他事件，如loadeddata 、loadedmetadata、canplay、canplaythrough 等，在各手机端表现不一。如ios 微信中监听,
  加载时并不会触发任何事件，播放后才触发，类似readyState,chrome及安卓中加载时就触发。应尽量不使用其他事件
 
 
  ### 自动播放 autoplay
-    适用于部分浏览器(不推荐)
-    微信中自动播放：
+ 
+适用于部分浏览器(不推荐)
+微信中自动播放：
 ```js
 var audio = document.getElementsByTagName('audio');
 document.addEventListener("WeixinJSBridgeReady", ()=>{
