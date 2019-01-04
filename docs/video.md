@@ -27,7 +27,7 @@
   x-webkit-airplay='true' airplay='allow' ios镜像投影功能
   webkit-playsinline playsinline:   内联播放
 
-  x5-video-player-type="h5" :  启用x5内核H5播放器
+  x5-video-player-type="h5" :  启用x5内核H5播放器(微信等浏览器支持)
   x5-video-player-fullscreen="true"  全屏设置。ture和false的设置会导致布局上的不一样
   x5-video-orientation="portraint" ：声明播放器支持的方向，可选值landscape 横屏,portraint竖屏。
                                      默认值portraint。无论是直播还是全屏H5一般都是竖屏播放，
