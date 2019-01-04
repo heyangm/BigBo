@@ -39,7 +39,8 @@
 
 > 状态属性  readyState(就绪状态) 、networkState(当前网络状态)
 
- readyState :   0 = HAVE_NOTHING - 没有关于音频/视频是否就绪的信息 
+ readyState :   
+                0 = HAVE_NOTHING - 没有关于音频/视频是否就绪的信息 
  
                 1 = HAVE_METADATA - 关于音频/视频就绪的元数据 
                 
@@ -49,7 +50,8 @@
                 
                 4 = HAVE_ENOUGH_DATA - 可用数据足以开始播放
 
- networkState : 0 = NETWORK_EMPTY - 音频/视频尚未初始化
+ networkState : 
+                0 = NETWORK_EMPTY - 音频/视频尚未初始化
  
                 1 = NETWORK_IDLE - 音频/视频是活动的且已选取资源，但并未使用网络
                 
