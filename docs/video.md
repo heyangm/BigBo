@@ -39,8 +39,7 @@
 
 > 状态属性  readyState(就绪状态) 、networkState(当前网络状态)
 
- readyState :   
-                0 = HAVE_NOTHING - 没有关于音频/视频是否就绪的信息 
+ readyState :   0 = HAVE_NOTHING - 没有关于音频/视频是否就绪的信息 
  
                 1 = HAVE_METADATA - 关于音频/视频就绪的元数据 
                 
@@ -50,8 +49,7 @@
                 
                 4 = HAVE_ENOUGH_DATA - 可用数据足以开始播放
 
- networkState : 
-                0 = NETWORK_EMPTY - 音频/视频尚未初始化
+ networkState :  0 = NETWORK_EMPTY - 音频/视频尚未初始化
  
                 1 = NETWORK_IDLE - 音频/视频是活动的且已选取资源，但并未使用网络
                 
@@ -122,8 +120,8 @@ X5是腾讯基于Webkit开发的浏览器内核，应用于Android端的微信�
 在普通video元素上添加属性 x5-video-player-type ，启用Ｈ5同层播放器
 ### 属性 
 #### x5-video-player-fullscreen 全屏方式
-如果不申明此属性，页面得到视口区域为原始视口大小(视频未播放前)，不包含导航栏的高度，导致上下黑边
-通过监听窗口大小实现全屏
+如果不申明此属性，页面得到视口区域为原始视口大小(视频未播放前)，不包含导航栏的高度，导致上下黑边。
+可通过监听窗口大小实现全屏
 ``` js 
 window.onresize = function(){
     video.style.width = window.innerWidth + "px";
