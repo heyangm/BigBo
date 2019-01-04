@@ -1,4 +1,4 @@
-##  视频/音频播放
+##  视频播放
 
 #### video  
 
@@ -42,24 +42,24 @@
  readyState :   0 = HAVE_NOTHING - 没有关于音频/视频是否就绪的信息 
  
                 1 = HAVE_METADATA - 关于音频/视频就绪的元数据 
-                
+
                 2 = HAVE_CURRENT_DATA - 关于当前播放位置的数据是可用的，但没有足够的数据来播放下一帧/毫秒 
-                
+
                 3 = HAVE_FUTURE_DATA - 当前及至少下一帧的数据是可用的 
-                
+
                 4 = HAVE_ENOUGH_DATA - 可用数据足以开始播放
 
- networkState :  0 = NETWORK_EMPTY - 音频/视频尚未初始化
- 
+ networkState : 0 = NETWORK_EMPTY - 音频/视频尚未初始化
+
                 1 = NETWORK_IDLE - 音频/视频是活动的且已选取资源，但并未使用网络
-                
+
                 2 = NETWORK_LOADING - 浏览器正在下载数据
-                
+
                 3 = NETWORK_NO_SOURCE - 未找到音频/视频来源
 
 （在ios微信中，readyState、networkState在视频开始播放前始终返回0）
 
-#### ios(未播放时)
+#### ios
 
 | property | weixin | safari | uc | snail  |
 | --- |--- | --- | --- | ---- |
@@ -68,6 +68,7 @@
 | inline |  true |  true  |false |false|
 
 #### Android
+
 | property | weixin | 360 | uc | snail  |
 | --- |--- | --- | --- | ---- |
 | readyState | 0 | 0 | 0| 0|
@@ -80,15 +81,14 @@
 >事件
 
  兼容性较好 ：play、paused、ended 、playing、timeupdate
- 
- 其他事件，如loadeddata 、loadedmetadata、canplay、canplaythrough 等，在各手机端表现不一。如ios 微信中监听,
- 加载时并不会触发任何事件，播放后才触发，类似readyState,chrome及安卓中加载时就触发。应尽量不使用其他事件
+
+ 其他事件，如loadstart、loadeddata 、loadedmetadata、canplay、canplaythrough 等，在各手机端表现不一。如ios 微信中监听,
+ 加载时并不会触发任何事件，播放后才触发,chrome及安卓中加载时就触发。应尽量不使用其他事件
 
 
  ### 自动播放 autoplay
- 
-适用于部分浏览器(不推荐)
-微信中自动播放：
+    适用于部分浏览器(不推荐)
+    微信中自动播放：
 ```js
 var audio = document.getElementsByTagName('audio');
 document.addEventListener("WeixinJSBridgeReady", ()=>{
@@ -119,9 +119,10 @@ X5是腾讯基于Webkit开发的浏览器内核，应用于Android端的微信�
 
 在普通video元素上添加属性 x5-video-player-type ，启用Ｈ5同层播放器
 ### 属性 
+
 #### x5-video-player-fullscreen 全屏方式
-如果不申明此属性，页面得到视口区域为原始视口大小(视频未播放前)，不包含导航栏的高度，导致上下黑边。
-可通过监听窗口大小实现全屏
+如果不申明此属性，页面得到视口区域为原始视口大小(视频未播放前)，不包含导航栏的高度，导致上下黑边
+通过监听窗口大小实现全屏
 ``` js 
 window.onresize = function(){
     video.style.width = window.innerWidth + "px";
@@ -137,6 +138,7 @@ window.onresize = function(){
 ios 微信中支持 ，安卓不支持。
 
 ### 事件回调
+
 #### x5videoenterfullscreen 进入全屏通知
 ``` js
 myVideo.addEventListener("x5videoenterfullscreen", function(){
@@ -168,11 +170,11 @@ var makeVideoPlayableInline=function(){"use strict";function e(e){var r=void 0;v
 1. 内联播放 添加 playinline属性 在ios、安卓中实现内联播放
 
     <video id="media" controls  src="" playsinline="true" webkit-playsinline="true" preload="auto"></video>
-    
+
     缺陷： 在安卓中，视频区域的其他元素会被覆盖
-    
+
 2. 视频区域内需要添加其他元素，如弹幕、按钮等
 
    在安卓中 添加x5-video-player-type="h5" 属性，启用Ｈ5同层播放器
-   
+
    缺陷： 支持h5同层播放的浏览器中 如微信，类似弹出弹窗进入全屏播放
