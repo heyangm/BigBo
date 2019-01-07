@@ -27,7 +27,7 @@
   x-webkit-airplay='true' airplay='allow' ios镜像投影功能
   webkit-playsinline playsinline:   内联播放
 
-  x5-video-player-type="h5" :  启用x5内核H5播放器(微信等浏览器支持)
+  x5-video-player-type="h5" :  启用x5内核H5同层播放器(微信等浏览器支持)
   x5-video-player-fullscreen="true"  全屏设置。ture和false的设置会导致布局上的不一样
   x5-video-orientation="portraint" ：声明播放器支持的方向，可选值landscape 横屏,portraint竖屏。
                                      默认值portraint。无论是直播还是全屏H5一般都是竖屏播放，
@@ -36,6 +36,15 @@
 ```
 
 ### video 属性
+> playsinline 内联播放属性
+
+    video 播放默认使用全屏置顶形式播放，添加playsinline 属性取消全屏。添加webkit-playsinline兼容
+
+> x5-video-player-type="h5" 
+
+ 启用x5内核H5同层播放器，进入全屏播放，但不置顶，即可在视频元素上覆盖其他元素。
+
+ x5-video-player-fullscreen、x5-video-orientation为同层播放器属性
 
 > 状态属性  readyState(就绪状态) 、networkState(当前网络状态)
 
@@ -57,24 +66,25 @@
 
                 3 = NETWORK_NO_SOURCE - 未找到音频/视频来源
 
-（在ios微信中，readyState、networkState在视频开始播放前始终返回0）
 
-#### ios
+#### video 属性在不同手机上有不同的表现，如在ios微信中，readyState、networkState在视频开始播放前始终返回0
+
+#### ios 获取readyState、networkState的初始值 及添加playsinline属性后是否video内联播放
 
 | property | weixin | safari | uc | snail  |
 | --- |--- | --- | --- | ---- |
-| readyState | 0 | 1 | 1| 0|
-| networkState |  0 | 3  | 3  | 0 |
-| inline |  true |  true  |false |false|
+| readyState(初始) | 0 | 1 | 1| 0|
+| networkState(初始) |  0 | 3  | 3  | 0 |
+| playsinline |  true |  true  |false |false|
 
-#### Android
+#### Android 获取readyState、networkState的初始值 及添加playsinline属性后是否video内联播放、是否支持启动x5同层播放
 
 | property | weixin | 360 | uc | snail  |
 | --- |--- | --- | --- | ---- |
-| readyState | 0 | 0 | 0| 0|
-| networkState |  3 | 1  | 2/3 | 1 |
-|x5- inline |  false |  true  | true |true|
-| inline | true | true | true | true|
+| readyState(初始) | 0 | 0 | 0| 0|
+| networkState(初始) |  3 | 1  | 2/3 | 1 |
+| playsinline | true | true | true | true|
+| x5-video |  true |  false  | false | false|
 
 
 
@@ -83,7 +93,7 @@
  兼容性较好 ：play、paused、ended 、playing、timeupdate
 
  其他事件，如loadstart、loadeddata 、loadedmetadata、canplay、canplaythrough 等，在各手机端表现不一。如ios 微信中监听,
- 加载时并不会触发任何事件，播放后才触发,chrome及安卓中加载时就触发。应尽量不使用其他事件
+ 加载时并不会触发任何事件，播放后才触发,chrome及安卓中加载时就触发。因此应尽量不使用其他事件
 
 
  ### 自动播放 autoplay
@@ -115,14 +125,19 @@ video.addEventListener("click", ()=>{
 ```
 
 ##  X5 
+
+[H5同层播放器接入规范](https://x5.tencent.com/tbs/guide/video.html)
+
 X5是腾讯基于Webkit开发的浏览器内核，应用于Android端的微信、QQ、QQ浏览器等应用。它提供了一种名叫「同层播放器」的特殊video元素以解决遮挡问题。
 
 在普通video元素上添加属性 x5-video-player-type ，启用Ｈ5同层播放器
 ### 属性 
 
 #### x5-video-player-fullscreen 全屏方式
-如果不申明此属性，页面得到视口区域为原始视口大小(视频未播放前)，不包含导航栏的高度，导致上下黑边
-通过监听窗口大小实现全屏
+如果不申明此属性，页面得到视口区域为原始视口大小(视频未播放前)，比如在微信里，会有一个常驻的标题栏，如果不声明此属性，这个标题栏高度不会给页面，播放时会平均分为两块（上下黑块）
+
+注： 声明此属性，需要页面自己重新适配新的视口大小变化。可以通过监听resize 事件来实现
+
 ``` js 
 window.onresize = function(){
     video.style.width = window.innerWidth + "px";
@@ -131,10 +146,11 @@ window.onresize = function(){
 ```
 #### x5-video-orientation 控制横竖屏
 功能：声明播放器支持的方向
-可选值： landscape 横屏, portraint竖屏 ,landscape|portrait 跟随手机自动旋转(此属性只在声明了x5-video-player-type=”h5”情况下生效)
+
+可选值： landscape 横屏, portraint竖屏 ,landscape|portrait 跟随手机自动旋转  (此属性只在声明了x5-video-player-type=”h5”情况下生效)
 
 #### playsinline="true"  webkit-playsinline="true"  
-需要嵌入网页的APP比如WeChat中UIwebview 的allowsInlineMediaPlayback = YES webview.allowsInlineMediaPlayback = YES，才能生效
+需要嵌入网页的APP比如WeChat中UIwebview 的allowsInlineMediaPlayback = YES webview.allowsInlineMediaPlayback = YES，才能生效。
 ios 微信中支持 ，安卓不支持。
 
 ### 事件回调
@@ -153,6 +169,7 @@ myVideo.addEventListener("x5videoexitfullscreen", function(){
 })
 ```
 
+参考文档 ：[https://zhuanlan.zhihu.com/p/27559167](https://zhuanlan.zhihu.com/p/27559167)
 
 >针对蜗牛app实现内嵌播放，添加以下js:
 (在其他浏览器中添加以下代码可能会导致视频无法播放)
@@ -164,10 +181,13 @@ var makeVideoPlayableInline=function(){"use strict";function e(e){var r=void 0;v
 }
 ```
 
-参考文档 ：[https://zhuanlan.zhihu.com/p/27559167](https://zhuanlan.zhihu.com/p/27559167)
+
 
 ## 总结
-1. 内联播放 添加 playinline属性 在ios、安卓中实现内联播放
+
+1. 内联播放
+
+    添加 playinline属性, 在ios、安卓中实现内联播放
 
     <video id="media" controls  src="" playsinline="true" webkit-playsinline="true" preload="auto"></video>
 
@@ -177,4 +197,6 @@ var makeVideoPlayableInline=function(){"use strict";function e(e){var r=void 0;v
 
    在安卓中 添加x5-video-player-type="h5" 属性，启用Ｈ5同层播放器
 
-   缺陷： 支持h5同层播放的浏览器中 如微信，类似弹出弹窗进入全屏播放
+   缺陷： 支持h5同层播放的浏览器中，如安卓端微信，效果为类似弹出弹窗进入全屏播放
+
+3. 使用click事件触发播放
