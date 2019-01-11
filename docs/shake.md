@@ -1,4 +1,4 @@
-#  摇一摇
+# 监听设备动作
 [article](https://cloud.tencent.com/developer/article/1114209)
 [orienter](https://github.com/shrekshrek/orienter/blob/master/orienter.js)
 
