@@ -70,7 +70,7 @@ function deviceMotionHandler(eventData) {
     window.dispatchEvent(event)
 
 
-
+[文档](https://w3c.github.io/deviceorientation/)
 
 <!-- 3.window.addEventListen('devicemotion',this,false)
 addEventListener绑定object的时候，object如果含有handleEvent方法，事件触发后会执行object的handleEvent方法。 -->
