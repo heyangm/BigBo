@@ -40,6 +40,10 @@
 
     video 播放默认使用全屏置顶形式播放，添加playsinline 属性取消全屏。添加webkit-playsinline兼容
 
+    需要嵌入网页的APP比如WeChat中UIwebview 的allowsInlineMediaPlayback = YES webview.allowsInlineMediaPlayback = YES，才能生效。
+
+    ios 微信中支持 ，android微信中不支持。
+
 > x5-video-player-type="h5" 
 
  启用x5内核H5同层播放器，进入全屏播放，但不置顶，即可在视频元素上覆盖其他元素。
@@ -92,7 +96,7 @@
  兼容性较好 ：play、paused、ended 、playing、timeupdate
 
  其他事件，如loadstart、loadeddata 、loadedmetadata、canplay、canplaythrough 等，在各手机端表现不一。如ios 微信中监听,
- 加载时并不会触发任何事件，播放后才触发,chrome及安卓中加载时就触发。因此应尽量不使用其他事件
+ 加载时并不会触发任何事件，播放后才触发,chrome及部分安卓中加载时就触发。因此应尽量不使用其他事件
 
 
  ### 自动播放 autoplay
@@ -148,9 +152,6 @@ window.onresize = function(){
 
 可选值： landscape 横屏, portraint竖屏 ,landscape|portrait 跟随手机自动旋转  (此属性只在声明了x5-video-player-type=”h5”情况下生效)
 
-#### playsinline="true"  webkit-playsinline="true"  
-需要嵌入网页的APP比如WeChat中UIwebview 的allowsInlineMediaPlayback = YES webview.allowsInlineMediaPlayback = YES，才能生效。
-ios 微信中支持 ，安卓不支持。
 
 ### 事件回调
 
@@ -186,21 +187,15 @@ var makeVideoPlayableInline=function(){"use strict";function e(e){var r=void 0;v
 
 1. 内联播放
 
-    添加 playinline属性
+    添加 playinline属性，ios蜗牛客户端添加上述代码处理
 
-    支持浏览器：ios微信、safari、ios阅读  安卓蜗牛、阅读
-    不支持 ： ios(6sp 12.0)蜗牛 、 安卓微信端（弹窗全屏播放且覆盖其他元素）
+    不支持 ：android微信端（弹窗全屏播放且覆盖其他元素） 及其他部分浏览器 如ios端uc等  
 
-    <video controls  src="" playsinline="true" webkit-playsinline="true" preload="auto"></video>
-
-
-2. 安卓端微信效果调整
+> android端微信效果调整:
 
     添加x5-video-player-type="h5" 属性，启用Ｈ5同层播放器
 
-   <video controls  src="" playsinline="true" webkit-playsinline="true" preload="auto" x5-video-player-type="h5"></video>
-
-   缺陷： 支持h5同层播放的浏览器中，类似弹出弹窗进入全屏播放效果
+   缺陷： 支持h5同层播放的浏览器中，仍有类似弹出弹窗进入全屏播放效果
 
 3. 使用click事件触发播放
 
