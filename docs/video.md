@@ -27,7 +27,7 @@
   x-webkit-airplay='true' airplay='allow' ios镜像投影功能
   webkit-playsinline playsinline:   内联播放
 
-  x5-video-player-type="h5" :  启用x5内核H5同层播放器(微信等浏览器支持)
+  x5-video-player-type="h5" :  启用x5内核H5同层播放器(安卓版微信等浏览器支持)
   x5-video-player-fullscreen="true"  全屏设置。ture和false的设置会导致布局上的不一样
   x5-video-orientation="portraint" ：声明播放器支持的方向，可选值landscape 横屏,portraint竖屏。
                                      默认值portraint。无论是直播还是全屏H5一般都是竖屏播放，
@@ -83,9 +83,8 @@
 | --- |--- | --- | --- | ---- |
 | readyState(初始) | 0 | 0 | 0| 0|
 | networkState(初始) |  3 | 1  | 2/3 | 1 |
-| playsinline | true | true | true | true|
+| playsinline | false | true | true | true|
 | x5-video |  true |  false  | false | false|
-
 
 
 >事件
@@ -187,15 +186,19 @@ var makeVideoPlayableInline=function(){"use strict";function e(e){var r=void 0;v
 
 1. 内联播放
 
-    添加 playinline属性, 在ios、安卓中实现内联播放
+    添加 playinline属性
 
-    <video id="media" controls  src="" playsinline="true" webkit-playsinline="true" preload="auto"></video>
+    支持浏览器：ios微信、safari、ios阅读  安卓蜗牛、阅读
+    不支持 ： ios(6sp 12.0)蜗牛 、 安卓微信端（弹窗全屏播放且覆盖其他元素）
 
-    缺陷： 在安卓中，视频区域的其他元素会被覆盖
+    <video controls  src="" playsinline="true" webkit-playsinline="true" preload="auto"></video>
+
 
 2. 视频区域内需要添加其他元素，如弹幕、按钮等
 
    在安卓中 添加x5-video-player-type="h5" 属性，启用Ｈ5同层播放器
+
+   <video controls  src="" playsinline="true" webkit-playsinline="true" preload="auto" x5-video-player-type="h5"></video>
 
    缺陷： 支持h5同层播放的浏览器中，如安卓端微信，效果为类似弹出弹窗进入全屏播放
 
