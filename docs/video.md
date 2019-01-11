@@ -194,13 +194,13 @@ var makeVideoPlayableInline=function(){"use strict";function e(e){var r=void 0;v
     <video controls  src="" playsinline="true" webkit-playsinline="true" preload="auto"></video>
 
 
-2. 视频区域内需要添加其他元素，如弹幕、按钮等
+2. 安卓端微信效果调整
 
-   在安卓中 添加x5-video-player-type="h5" 属性，启用Ｈ5同层播放器
+    添加x5-video-player-type="h5" 属性，启用Ｈ5同层播放器
 
    <video controls  src="" playsinline="true" webkit-playsinline="true" preload="auto" x5-video-player-type="h5"></video>
 
-   缺陷： 支持h5同层播放的浏览器中，如安卓端微信，效果为类似弹出弹窗进入全屏播放
+   缺陷： 支持h5同层播放的浏览器中，类似弹出弹窗进入全屏播放效果
 
 3. 使用click事件触发播放
 
