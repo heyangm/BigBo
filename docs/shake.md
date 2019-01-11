@@ -48,7 +48,7 @@ function deviceMotionHandler(eventData) {
     lastZ = z;
 }
 ```
-##自定义监听事件
+## 自定义监听事件
 
 1.自定义一个监听事件 shake  
 
