@@ -1,0 +1,74 @@
+/* 定位 满屏 */
+ .position{
+    position: absolute;
+    top: 0;
+    left:0;
+    bottom:0;
+    right:0;
+ }
+ /* 渐变 */
+ /* 进度条斜条纹 */
+ .gradient{
+    background:linear-gradient(-45deg,#000000 25%,#fff 0,#fff 50%,#000 0,#000 75%,#fff 0);
+ }
+ /* 垂直渐变 上到下 */
+ .top_gradient{
+    background: linear-gradient(#ffe7de,#e3f0f0)
+ }
+ /* 径向渐变 左到右 */
+ .left_gradient{
+    background: linear-gradient(to right,#ffe7de,#e3f0f0)
+ }
+
+ /* 超出省略 */
+ .overflow{
+     display: -webkit-box;
+      /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/* flex */
+.flex_container{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+.flex_sub{
+    flex :1;
+}
+/* 阴影  右下  水平阴影位置|垂直阴影位置|模糊距离|阴影尺寸|颜色| inset(内部阴影)*/
+.shadow{
+    box-shadow:4px 4px 0px 0px #d6d6d6;
+}
+
+/* 动画 */
+.animation{
+    animation: fadeIn 1s linear 1s infinite alternate forwards ;
+}
+/*渐显、 渐隐  旋转*/
+@keyframes fadeIn{
+    0%{opacity: 0;}
+    100%{opacity: 1;z-index: 10;}
+}
+@keyframes fadeOut{
+    0%{opacity: 1;}
+    100%{opacity: 0;z-index: 0;}
+}
+@keyframes rotate{
+    0%{
+        transform: rotate(0)
+    }
+    100%{
+        transform: rotate(360deg)
+    }
+}
+/* 媒体查询 适配 */
+/* iphoneX  */
+@media only screen and (device-width: 375px) and (device-height: 812px){
+    .card_buts{
+        bottom:150rpx;
+    }
+}
