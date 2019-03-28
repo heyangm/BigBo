@@ -4,3 +4,17 @@
 ###  * touchend获取不到touches
 使用touchmove替代
 获取touchmove的touches  
+
+###  js innerHTML
+使用js innerHTML设置元素内容时，会把原先的元素删除后重新生成
+
+``` html
+<div>
+<p>aaa</p>
+</div>
+```
+```js 
+document.querySelector('div').innerHTML += '<h3>新增</h3>'
+```
+实际生成的html是重新生成的。
+在react中，绑定在元素上的事件会被取消。
