@@ -19,3 +19,11 @@
 ### HTTP Head
 ### HTTP Request Body
     application/json  application/x-www-form-urlencoded  multipart/form-data text/xml
+
+
+## 存储
+### localStorage 本地存储
+
+
+
+## 跨域

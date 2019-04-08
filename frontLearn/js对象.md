@@ -51,3 +51,39 @@ promise.then(function(){
 
 
 ## 语句
+
+## 语法
+由于es6的引入，js文件可被分为脚本跟模块两种。
+脚本可包含语句。模块中可包含三种内容:import声明、export声明和语句。
+###  import
+两种import用法。一，直接import一个模块；二，带from的import,引入模块里的一些信息。
+```js
+import '/a'
+import xx from '/a'
+```
+import一个模块只能保证引入的代码被执行，无法获得它的信息。
+带from的引入，引入模块的一部分，可以把它们变成本地变量。带from的三种用法：
++ import x from './a.js' ,引入模块默认导出值
++ import {a as x,modify} from './a.js' ,引入模块中的变量
++ import * as x from './a.js' ,把模块中所有变量以类似对象属性的方式引入
+
+### export
+导出模块中的内容。
+```js
+export {a,b}
+export const a 
+```
+> export default
+
+
+妇联页面修改添加配置
+深入js执行机制、函数、语法以及CSSOM等。
+
+整理一份项目地址列表，如云阅读官网、活动地址及其他产品活动项目地址，方便后面查找维护。
+
+
+
+
+
+
+
